@@ -1,4 +1,5 @@
-import { CircularProgress, Grid } from "@material-ui/core";
+import CircularProgress from "@mui/material/CircularProgress";
+import Grid from "@mui/material/Grid";
 
 function Loading() {
   return (

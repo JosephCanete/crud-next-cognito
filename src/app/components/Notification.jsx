@@ -1,6 +1,6 @@
 import React from "react";
-import Snackbar from "@material-ui/core/Snackbar";
-import MuiAlert from "@material-ui/lab/Alert";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 const Notification = ({ open, message, type, onClose }) => {
   const handleClose = (event, reason) => {
