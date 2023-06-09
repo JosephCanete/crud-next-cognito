@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import axios from "axios";
 import Notification from "./Notification";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 export default function UserTable({ users, getUsers }) {
   const [notification, setNotification] = useState({
@@ -76,6 +77,10 @@ export default function UserTable({ users, getUsers }) {
   const onCloseNotification = () =>
     setNotification((value) => ({ ...value, open: false }));
 
+  const theme = useTheme();
+
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <>
       <Notification
@@ -102,8 +107,8 @@ export default function UserTable({ users, getUsers }) {
         >
           Add User
         </Button>
-        <TableContainer component={Paper} maxWidth="xs">
-          <Table sx={{ minWidth: 1200 }} aria-label="User Table">
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="User Table">
             <TableHead>
               <TableRow>
                 <TableCell>User ID</TableCell>
@@ -135,6 +140,8 @@ export default function UserTable({ users, getUsers }) {
                     <Box
                       sx={{
                         display: "flex",
+                        flexDirection: isMobile ? "column" : "row",
+
                         justifyContent: "space-between",
                         alignItems: "center",
                       }}
