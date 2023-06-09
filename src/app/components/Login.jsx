@@ -146,11 +146,9 @@ const Login = () => {
                   <Box sx={{ display: "flex" }}>
                     <Button
                       onClick={() => router.push("/register")}
-                      type="submit"
                       variant="contained"
                       color="secondary"
                       fullWidth
-                      disabled={isSubmitting}
                       sx={{ m: 1 }}
                     >
                       Register Here!
