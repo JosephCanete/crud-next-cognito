@@ -9,11 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "^18.2.0",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.11.16",
-    "@mui/material": "^5.13.3",
+    "@mui/material": "^5.13.4",
     "amazon-cognito-identity-js": "^6.2.0",
     "aws-amplify": "^5.2.5",
     "aws-sdk": "^2.1392.0",
@@ -21,6 +20,7 @@
     "formik": "^2.4.1",
     "next": "13.4.4",
     "next-auth": "^4.22.1",
+    "react": "^18.2.0",
     "react-dom": "18.2.0",
     "yup": "^1.2.0"
   }

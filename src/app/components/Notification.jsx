@@ -12,9 +12,9 @@ const Notification = ({ open, message, type, onClose }) => {
 
   return (
     <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-      <MuiAlert severity={type} onClose={handleClose}>
+      <Alert severity={type} onClose={handleClose}>
         {message}
-      </MuiAlert>
+      </Alert>
     </Snackbar>
   );
 };
