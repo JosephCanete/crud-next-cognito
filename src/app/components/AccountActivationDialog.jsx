@@ -10,6 +10,7 @@ import UserPool from "./UserPool";
 import { useRouter } from "next/router";
 
 const AccountActivationDialog = ({ open, onClose, email, setNotification }) => {
+  const router = useRouter();
   const [verificationCode, setVerificationCode] = useState("");
 
   const handleActivate = () => {
@@ -29,7 +30,9 @@ const AccountActivationDialog = ({ open, onClose, email, setNotification }) => {
           type: "success",
         });
         onClose();
-        // return router.push("/login");
+        return setTimeout(() => {
+          router.push("/login");
+        }, 250);
       }
     });
   };
@@ -50,9 +53,6 @@ const AccountActivationDialog = ({ open, onClose, email, setNotification }) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="secondary">
-          Cancel
-        </Button>
         <Button onClick={handleActivate} color="primary" variant="contained">
           Activate
         </Button>

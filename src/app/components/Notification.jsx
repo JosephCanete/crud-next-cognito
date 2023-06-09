@@ -14,14 +14,14 @@ const Notification = ({ open, message, type, onClose }) => {
     <Snackbar
       anchorOrigin={{
         vertical: "bottom",
-        horizontal: "middle",
+        horizontal: "center",
       }}
       open={open}
       autoHideDuration={5000}
       onClose={handleClose}
     >
       <Alert
-        severity={type}
+        severity={type && type}
         onClose={handleClose}
         sx={{
           "& .MuiAlert-icon": {

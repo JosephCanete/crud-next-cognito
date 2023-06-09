@@ -57,7 +57,10 @@ const Registration = () => {
     setNotification((value) => ({ ...value, open: false }));
   };
 
-  const handleCloseActivationDialog = () => setAccountActivationDialog(false);
+  const handleCloseActivationDialog = (event, reason) => {
+    if (reason === "backdropClick") return;
+    setAccountActivationDialog(false);
+  };
 
   return (
     <Container maxWidth="xl">
