@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Box, Container, Typography, Button } from "@mui/material";
+import { Box, Container, Typography, Button, TextField } from "@mui/material";
 import { Formik, Form, Field } from "formik";
-import { TextField } from "@mui/formik-material-ui";
 import Notification from "@/app/components/Notification";
 import * as Yup from "yup";
 import AccountActivationDialog from "./AccountActivationDialog";
