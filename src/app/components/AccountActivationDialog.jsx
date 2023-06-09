@@ -28,7 +28,7 @@ const AccountActivationDialog = ({ open, onClose, email, setNotification }) => {
           message: "Account successfully confirmed!",
           type: "success",
         });
-        // onClose();
+        onClose();
         // return router.push("/login");
       }
     });
@@ -41,6 +41,7 @@ const AccountActivationDialog = ({ open, onClose, email, setNotification }) => {
       </DialogTitle>
       <DialogContent>
         <TextField
+          sx={{ my: 1 }}
           label="Activation Code"
           value={verificationCode}
           onChange={(e) => setVerificationCode(e.target.value)}

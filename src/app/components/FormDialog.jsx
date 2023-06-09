@@ -1,25 +1,17 @@
-import React, { useState } from "react";
-import { makeStyles } from "@mui/styles";
+import React from "react";
 import {
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
+  TextField,
+  Button,
+  Box,
 } from "@mui/material";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-
-const useStyles = makeStyles({
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "1rem",
-  },
-});
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().email("Invalid email").required("Email is required"),
@@ -40,7 +32,6 @@ export default function FormDialog({
   getUsers,
   setNotification,
 }) {
-  const classes = useStyles();
   const { action, payload } = data;
   const { userId } = payload;
 
@@ -95,7 +86,7 @@ export default function FormDialog({
     }
   };
 
-  const initialValues = payload;
+  const initialValues = action === "update" ? payload : {};
 
   return (
     <Dialog open={open} onClose={onClose}>
@@ -107,65 +98,73 @@ export default function FormDialog({
           onSubmit={handleFormSubmit}
         >
           {({ errors, touched }) => (
-            <Form className={classes.form}>
-              <Field
-                name="username"
-                as={TextField}
-                label="Username"
-                error={touched.username && errors.username}
-                helperText={touched.username && errors.username}
-              />
-              <Field
-                name="firstName"
-                as={TextField}
-                label="First Name"
-                error={touched.firstName && errors.firstName}
-                helperText={touched.firstName && errors.firstName}
-              />
-              <Field
-                name="middleName"
-                as={TextField}
-                label="Middle Name"
-                error={touched.middleName && errors.middleName}
-                helperText={touched.middleName && errors.middleName}
-              />
-              <Field
-                name="lastName"
-                as={TextField}
-                label="Last Name"
-                error={touched.lastName && errors.lastName}
-                helperText={touched.lastName && errors.lastName}
-              />
-              <Field
-                name="age"
-                as={TextField}
-                label="Age"
-                type="number"
-                error={touched.age && errors.age}
-                helperText={touched.age && errors.age}
-              />
-              <Field
-                name="address"
-                as={TextField}
-                label="Address"
-                error={touched.address && errors.address}
-                helperText={touched.address && errors.address}
-              />
-              <Field
-                name="role"
-                as={TextField}
-                label="Role"
-                error={touched.role && errors.role}
-                helperText={touched.role && errors.role}
-              />
-              <DialogActions>
-                <Button onClick={onClose} color="secondary">
-                  Cancel
-                </Button>
-                <Button type="submit" color="primary">
-                  {action === "add" ? "ADD USER" : "UPDATE USER"}
-                </Button>
-              </DialogActions>
+            <Form>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  "& > *": { m: 1 },
+                }}
+              >
+                <Field
+                  name="username"
+                  as={TextField}
+                  label="Username"
+                  error={touched.username && errors.username}
+                  helperText={touched.username && errors.username}
+                />
+                <Field
+                  name="firstName"
+                  as={TextField}
+                  label="First Name"
+                  error={touched.firstName && errors.firstName}
+                  helperText={touched.firstName && errors.firstName}
+                />
+                <Field
+                  name="middleName"
+                  as={TextField}
+                  label="Middle Name"
+                  error={touched.middleName && errors.middleName}
+                  helperText={touched.middleName && errors.middleName}
+                />
+                <Field
+                  name="lastName"
+                  as={TextField}
+                  label="Last Name"
+                  error={touched.lastName && errors.lastName}
+                  helperText={touched.lastName && errors.lastName}
+                />
+                <Field
+                  name="age"
+                  as={TextField}
+                  label="Age"
+                  type="number"
+                  error={touched.age && errors.age}
+                  helperText={touched.age && errors.age}
+                />
+                <Field
+                  name="address"
+                  as={TextField}
+                  label="Address"
+                  error={touched.address && errors.address}
+                  helperText={touched.address && errors.address}
+                />
+                <Field
+                  name="role"
+                  as={TextField}
+                  label="Role"
+                  error={touched.role && errors.role}
+                  helperText={touched.role && errors.role}
+                />
+                <DialogActions>
+                  <Button onClick={onClose} color="secondary">
+                    Cancel
+                  </Button>
+                  <Button type="submit" color="primary">
+                    {action === "add" ? "ADD USER" : "UPDATE USER"}
+                  </Button>
+                </DialogActions>
+              </Box>
             </Form>
           )}
         </Formik>

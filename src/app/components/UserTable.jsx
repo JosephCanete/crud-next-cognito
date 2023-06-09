@@ -12,19 +12,7 @@ import Box from "@mui/material/Box";
 import axios from "axios";
 import Notification from "./Notification";
 
-const useStyles = makeStyles({
-  table: {
-    minWidth: 650,
-  },
-  tableContainer: {
-    maxWidth: 500,
-  },
-  tableCell: {
-    fontSize: 14,
-  },
-});
 export default function UserTable({ users, getUsers }) {
-  const classes = useStyles();
   const [notification, setNotification] = useState({
     open: false,
     message: "",
@@ -43,6 +31,7 @@ export default function UserTable({ users, getUsers }) {
       role: "",
     },
   });
+
   const handleDeleteUser = async (userId) => {
     try {
       await axios.delete(
@@ -52,7 +41,7 @@ export default function UserTable({ users, getUsers }) {
       setTimeout(() => {
         setNotification({
           open: true,
-          message: `User ${userId} has successfully deleted!`,
+          message: `User ${userId} has been successfully deleted!`,
           type: "error",
         });
       }, 150);
@@ -61,6 +50,7 @@ export default function UserTable({ users, getUsers }) {
       // Handle error
     }
   };
+
   const handleUpdateUser = (event, userId) => {
     setDialog({
       payload: users.find(({ userId: id }) => id === userId),
@@ -68,6 +58,7 @@ export default function UserTable({ users, getUsers }) {
       action: event.currentTarget.getAttribute("data-action"),
     });
   };
+
   const handleAddUser = (event) => {
     setDialog((value) => ({
       ...value,
@@ -75,6 +66,7 @@ export default function UserTable({ users, getUsers }) {
       action: event.currentTarget.getAttribute("data-action"),
     }));
   };
+
   const handleOnClose = () =>
     setDialog((value) => ({
       ...value,
@@ -99,8 +91,9 @@ export default function UserTable({ users, getUsers }) {
         getUsers={getUsers}
         setNotification={setNotification}
       />
-      <Box sx={{ display: "grid", spacing: 1 }}>
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
         <Button
+          sx={{ m: 2, alignSelf: "end" }}
           data-action="add"
           variant="contained"
           color="primary"
@@ -109,8 +102,8 @@ export default function UserTable({ users, getUsers }) {
         >
           Add User
         </Button>
-        <TableContainer component={Paper} sx={{ maxWidth: "700px" }}>
-          <Table className={classes.table} aria-label="User Table">
+        <TableContainer component={Paper} maxWidth="xs">
+          <Table sx={{ minWidth: 1200 }} aria-label="User Table">
             <TableHead>
               <TableRow>
                 <TableCell>User ID</TableCell>

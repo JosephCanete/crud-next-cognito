@@ -11,7 +11,6 @@ import Loading from "./Loading";
 
 const Login = () => {
   const router = useRouter();
-
   const [notification, setNotification] = useState({
     open: false,
     message: "",
@@ -23,7 +22,6 @@ const Login = () => {
     temporaryPassword: "",
   });
   const [loading, setLoading] = useState(false);
-
   const initialValues = {
     email: "",
     password: "",
@@ -78,20 +76,6 @@ const Login = () => {
       },
     });
 
-    // try {
-    //   await signIn("credentials", {
-    //     username: email,
-    //     password: password,
-    //     redirect: false, // Prevent automatic redirection
-    //   });
-    //   // Authentication successful, optionally redirect to dashboard
-    //   // router.push('/dashboard');
-    //   console.log("User authenticated");
-    // } catch (error) {
-    //   // Handle authentication error
-    //   console.error("Authentication failed", error);
-    // }
-
     setSubmitting(false);
   };
 
@@ -136,36 +120,30 @@ const Login = () => {
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
             >
-              {({ isSubmitting }) => (
+              {({ isSubmitting, errors, touched }) => (
                 <Form>
                   <Field
-                    component={TextField}
+                    as={TextField}
                     name="email"
                     label="Email"
                     variant="outlined"
                     margin="normal"
                     fullWidth
+                    error={!!errors.email && touched.email}
+                    helperText={touched.email && errors.email}
                   />
                   <Field
-                    component={TextField}
+                    as={TextField}
                     name="password"
                     label="Password"
                     type="password"
                     variant="outlined"
                     margin="normal"
                     fullWidth
+                    error={!!errors.password && touched.password}
+                    helperText={touched.password && errors.password}
                   />
                   <Box sx={{ display: "flex" }}>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      fullWidth
-                      disabled={isSubmitting}
-                      sx={{ m: 1 }}
-                    >
-                      Login
-                    </Button>
                     <Button
                       onClick={() => router.push("/register")}
                       type="submit"
@@ -175,7 +153,17 @@ const Login = () => {
                       disabled={isSubmitting}
                       sx={{ m: 1 }}
                     >
-                      Register
+                      Register Here!
+                    </Button>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      fullWidth
+                      disabled={isSubmitting}
+                      sx={{ m: 1 }}
+                    >
+                      Login
                     </Button>
                   </Box>
                 </Form>

@@ -5,6 +5,7 @@ import Notification from "@/app/components/Notification";
 import * as Yup from "yup";
 import AccountActivationDialog from "./AccountActivationDialog";
 import { useRouter } from "next/router";
+import UserPool from "./UserPool";
 
 const Registration = () => {
   const router = useRouter();
@@ -18,14 +19,19 @@ const Registration = () => {
   const initialValues = {
     email: "",
     password: "",
+    passwordConfirm: "",
   };
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().required("Email is required"),
     password: Yup.string().required("Password is required"),
+    passwordConfirm: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("Password confirmation is required"),
   });
 
   const handleSubmit = ({ email, password }, { setSubmitting, resetForm }) => {
+    console.log("reg invoked");
     UserPool.signUp(email, password, [], null, (err, data) => {
       if (err) {
         console.error(err);
@@ -93,25 +99,41 @@ const Registration = () => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ isSubmitting }) => (
+          {({ isSubmitting, errors, touched }) => (
             <Form>
               <Field
-                component={TextField}
                 name="email"
+                as={TextField}
                 label="Email"
                 variant="outlined"
                 margin="normal"
                 fullWidth
+                error={!!errors.email && touched.email}
+                helperText={touched.email && errors.email}
               />
 
               <Field
-                component={TextField}
                 name="password"
+                as={TextField}
                 label="Password"
                 type="password"
                 variant="outlined"
                 margin="normal"
                 fullWidth
+                error={!!errors.password && touched.password}
+                helperText={touched.password && errors.password}
+              />
+
+              <Field
+                name="passwordConfirm"
+                as={TextField}
+                label="Password Confirm"
+                type="password"
+                variant="outlined"
+                margin="normal"
+                fullWidth
+                error={!!errors.passwordConfirm && touched.passwordConfirm}
+                helperText={touched.passwordConfirm && errors.passwordConfirm}
               />
 
               <Button

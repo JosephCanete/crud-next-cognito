@@ -11,8 +11,26 @@ const Notification = ({ open, message, type, onClose }) => {
   };
 
   return (
-    <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-      <Alert severity={type} onClose={handleClose}>
+    <Snackbar
+      anchorOrigin={{
+        vertical: "bottom",
+        horizontal: "middle",
+      }}
+      open={open}
+      autoHideDuration={5000}
+      onClose={handleClose}
+    >
+      <Alert
+        severity={type}
+        onClose={handleClose}
+        sx={{
+          "& .MuiAlert-icon": {
+            fontSize: "34px",
+          },
+          fontWeight: 400,
+          fontSize: "22px",
+        }}
+      >
         {message}
       </Alert>
     </Snackbar>

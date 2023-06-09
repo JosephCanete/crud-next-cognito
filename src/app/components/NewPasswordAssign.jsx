@@ -1,5 +1,6 @@
 import { Box, Container, Typography, Button, TextField } from "@mui/material";
 import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
 import UserPool from "./UserPool";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 
@@ -87,7 +88,7 @@ const NewPasswordAssign = ({
           {({ isSubmitting }) => (
             <Form>
               <Field
-                component={TextField}
+                as={TextField}
                 name="password"
                 label="Password"
                 type="password"
@@ -96,7 +97,7 @@ const NewPasswordAssign = ({
                 fullWidth
               />
               <Field
-                component={TextField}
+                as={TextField}
                 name="passwordConfirm"
                 label="Password Confirm"
                 type="password"
