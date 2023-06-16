@@ -1,27 +1,23 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import UserTable from "./UserTable";
+import useGet from "../hooks/useGet";
+import Loading from "./Loading";
 
 export default function UserList() {
-  const [users, setUsers] = useState([]);
+  const [users, error, isLoading, getUser] = useGet("user");
   const [listener, setListener] = useState(false);
-
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const { data } = await axios.get(
-          "https://kqj4xsva5i.execute-api.ap-southeast-1.amazonaws.com/dev/user"
-        );
-        const sortedData = data.sort((a, b) => {
-          return new Date(b.createdAt) - new Date(a.createdAt);
-        });
-        setUsers([...sortedData]);
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    const fetchData = async () => {
+      await getUser();
+    };
     fetchData();
   }, [listener]);
 
-  return <UserTable users={users} getUsers={setListener} />;
+  return (
+    <>
+      {isLoading && <Loading />}
+      {users && <UserTable users={users} getUsers={setListener} />}
+      {error && <h1>Something went wrong while getting the data</h1>}
+    </>
+  );
 }

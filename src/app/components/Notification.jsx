@@ -21,7 +21,7 @@ const Notification = ({ open, message, type, onClose }) => {
       onClose={handleClose}
     >
       <Alert
-        severity={type && type}
+        severity={type ? type : "info"}
         onClose={handleClose}
         sx={{
           "& .MuiAlert-icon": {

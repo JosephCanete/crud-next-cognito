@@ -9,9 +9,9 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import axios from "axios";
 import Notification from "./Notification";
 import { useTheme, useMediaQuery } from "@mui/material";
+import useDelete from "../hooks/useDelete";
 
 export default function UserTable({ users, getUsers }) {
   const [notification, setNotification] = useState({
@@ -33,23 +33,18 @@ export default function UserTable({ users, getUsers }) {
     },
   });
 
+  const [data, error, isLoading, deleteUser] = useDelete();
+
   const handleDeleteUser = async (userId) => {
-    try {
-      await axios.delete(
-        `https://kqj4xsva5i.execute-api.ap-southeast-1.amazonaws.com/dev/user/${userId}`
-      );
-      getUsers((value) => !value);
-      setTimeout(() => {
-        setNotification({
-          open: true,
-          message: `User ${userId} has been successfully deleted!`,
-          type: "error",
-        });
-      }, 150);
-    } catch (error) {
-      console.log(error);
-      // Handle error
-    }
+    await deleteUser(`user/${userId}`);
+    getUsers((value) => !value);
+    setTimeout(() => {
+      setNotification({
+        open: true,
+        message: `User ${userId} has been successfully deleted!`,
+        type: "error",
+      });
+    }, 150);
   };
 
   const handleUpdateUser = (event, userId) => {

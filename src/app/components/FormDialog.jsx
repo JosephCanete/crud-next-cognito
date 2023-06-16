@@ -11,7 +11,7 @@ import {
 
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
+import usePost from "../hooks/usePost";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().email("Invalid email").required("Email is required"),
@@ -34,8 +34,9 @@ export default function FormDialog({
 }) {
   const { action, payload } = data;
   const { userId } = payload;
+  const [users, error, isLoading, makePost] = usePost();
 
-  const handleFormSubmit = ({
+  const handleFormSubmit = async ({
     username,
     firstName,
     middleName,
@@ -53,35 +54,27 @@ export default function FormDialog({
       role,
       address,
     };
-    const endpoint =
-      "https://kqj4xsva5i.execute-api.ap-southeast-1.amazonaws.com/dev/user";
+    const endpoint = "user";
 
     if (action === "add") {
-      axios
-        .post(endpoint, requestBody)
-        .then(() => {
-          getUsers((value) => !value);
-          setNotification(() => ({
-            open: true,
-            message: `User ${userId} has successfully added!`,
-            type: "success",
-          }));
-        })
-        .catch((error) => console.log(error));
+      await makePost(endpoint, requestBody);
+      getUsers((value) => !value);
+      setNotification(() => ({
+        open: true,
+        message: `User ${userId} has successfully added!`,
+        type: "success",
+      }));
       return onClose();
     }
     if (action === "update") {
-      axios
-        .post(`${endpoint}/${userId}`, requestBody)
-        .then(() => {
-          getUsers((value) => !value);
-          setNotification(() => ({
-            open: true,
-            message: `User ${userId} has successfully updated!`,
-            type: "info",
-          }));
-        })
-        .catch((error) => console.log(error));
+      console.log("update invoked");
+      await makePost(`${endpoint}/${userId}`, requestBody);
+      getUsers((value) => !value);
+      setNotification(() => ({
+        open: true,
+        message: `User ${userId} has successfully updated!`,
+        type: "info",
+      }));
       return onClose();
     }
   };
@@ -103,10 +96,10 @@ export default function FormDialog({
                 sx={{
                   display: "flex",
                   flexDirection: "column",
-                  "& > *": { m: 1 },
                 }}
               >
                 <Field
+                  sx={{ m: 1 }}
                   name="username"
                   as={TextField}
                   label="Username"
@@ -114,6 +107,7 @@ export default function FormDialog({
                   helperText={touched.username && errors.username}
                 />
                 <Field
+                  sx={{ m: 1 }}
                   name="firstName"
                   as={TextField}
                   label="First Name"
@@ -121,6 +115,7 @@ export default function FormDialog({
                   helperText={touched.firstName && errors.firstName}
                 />
                 <Field
+                  sx={{ m: 1 }}
                   name="middleName"
                   as={TextField}
                   label="Middle Name"
@@ -128,6 +123,7 @@ export default function FormDialog({
                   helperText={touched.middleName && errors.middleName}
                 />
                 <Field
+                  sx={{ m: 1 }}
                   name="lastName"
                   as={TextField}
                   label="Last Name"
@@ -135,6 +131,7 @@ export default function FormDialog({
                   helperText={touched.lastName && errors.lastName}
                 />
                 <Field
+                  sx={{ m: 1 }}
                   name="age"
                   as={TextField}
                   label="Age"
@@ -143,6 +140,7 @@ export default function FormDialog({
                   helperText={touched.age && errors.age}
                 />
                 <Field
+                  sx={{ m: 1 }}
                   name="address"
                   as={TextField}
                   label="Address"
@@ -150,6 +148,7 @@ export default function FormDialog({
                   helperText={touched.address && errors.address}
                 />
                 <Field
+                  sx={{ m: 1 }}
                   name="role"
                   as={TextField}
                   label="Role"
