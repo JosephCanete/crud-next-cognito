@@ -6,20 +6,24 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import IconButton from "@mui/material/IconButton";
 
 export default function Actions() {
+  const CustomIconButton = ({ children }) => {
+    return <IconButton>{children}</IconButton>;
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
-      <IconButton>
+      <CustomIconButton>
         <RefreshIcon />
-      </IconButton>
-      <IconButton>
+      </CustomIconButton>
+      <CustomIconButton>
         <ViewListIcon />
-      </IconButton>
-      <IconButton>
+      </CustomIconButton>
+      <CustomIconButton>
         <SettingsIcon />
-      </IconButton>
-      <IconButton>
+      </CustomIconButton>
+      <CustomIconButton>
         <AccountCircleIcon />
-      </IconButton>
+      </CustomIconButton>
     </Box>
   );
 }

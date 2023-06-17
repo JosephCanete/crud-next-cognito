@@ -11,7 +11,7 @@ export default function Header() {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        mt: 1,
+        m: 1,
       }}
     >
       <Hamburger />

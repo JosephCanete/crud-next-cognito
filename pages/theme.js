@@ -1,17 +1,15 @@
 import { createTheme } from "@mui/material/styles";
 
 const grey = "#e8eaed";
-const secondary = "#";
 
 export const theme = createTheme({
   palette: {
     primary: {
-      main: "#007bff", // Customize the primary color
+      main: "#e8eaed", // Customize the primary color
     },
     secondary: {
       main: "#fbbc04", // Customize the secondary color
     },
-
     background: {
       default: "#202124",
     },

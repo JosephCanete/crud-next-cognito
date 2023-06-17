@@ -6,7 +6,7 @@ export default function Logo() {
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
       <IconButton>
-        <DescriptionIcon fontSize="large" color="secondary" />
+        <DescriptionIcon fontSize="x" color="secondary" />
       </IconButton>
       <Typography variant="h5" fontWeight={400}>
         Write Care Share
