@@ -1,9 +1,27 @@
-import React from "react";
-import TextArea from "./TextArea";
-import { Box } from "@mui/material";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Masonry from "@mui/lab/Masonry";
 import Card from "./Card";
+import TextArea from "./TextArea/TextArea";
 
-export default function Board() {
+const cardData = [
+  "Lorem ip",
+  "Lorem ipipisicing elit. Maiores vitae aodit, quasi earum, vero quam odio voluptatum voluptatibus eius et repellat, magribus",
+  "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores vitae aodit, quasi earum, vero quam odio voluptatum voluptatibus eius et repellat, magnam quod tenetur optio. Animi totam dolore doloribus",
+  "Lorem ipsum dolor sit, amet conseepellat, magnam quod tenetur optio. Animi totam dolore doloribus",
+  "Lorem ipsum dolor sit, amet consectetur adipiasi earum, vero quam odio voluptatum voluptatibus eius et repellat, magnam quod tenetur optio. Animi totam dolore doloribus",
+  "Lorem ipsum dolor sit, amet imi totam dolore doloribus",
+  "Lorem ipsum dolor sit,tatibus eius et repellat, magnam quod tenetur optio. Animi totam dolore doloribus",
+  "Lorem ips repellat, magnam quod tenetur optio. Animi totam dolore doloribus",
+  "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores vitae aodit, quasi earum, vero quam odio voluptatum voluptatibus eius et repellat, magnam quod tenetur optio. Animi totam dolore doloribus",
+  "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores vitae aodit, quasi earum, vero quam nam quod tenetur optio. Animi totam dolore doloribus",
+  "Lorem ipsum dolor sit, amet consectetur adipisicing elit. M repellat, magnam quod tenetur optio. Animi totam dolore doloribus",
+  "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores vitae aodit, quasi earum, vero quam odio voluptatum voluptatibus eius et repellat, magnam quod tenetur optio. Animi totam dolore doloribus",
+  "Lorem ipsum dolor sitoluptatum voluptatibus eius et repellat, magnam quod tenetur optio. Animi totam dolore doloribus",
+  "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores vitae aodit, q magnam quod tenetur optio. Animi totam dolore doloribus",
+];
+
+export default function ImageMasonry() {
   return (
     <Box
       sx={{
@@ -22,39 +40,11 @@ export default function Board() {
           flex: 1,
         }}
       >
-        <Card sx={{ width: "300px" }} />
-        <Card
-          content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore omnis
-        quo culpa aperiam officiis sint, corrupti dolor ab debitis, non facere
-        tempore excepturi sequi mollitia? Amet nesciunt distinctio officia ad!"
-        />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card
-          content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore omnis
-        quo culpa aperiam officiis sint, corrupti dolor ab debitis, non facere
-        tempore excepturi sequi mollitia? Amet nesciunt distinctio officia ad!"
-        />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card
-          content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore omnis
-        quo culpa aperiam officiis sint, corrupti dolor ab debitis, non facere
-        tempore excepturi sequi mollitia? Amet nesciunt distinctio officia ad!"
-        />
-        <Card />
+        <Masonry columns={8} spacing={2}>
+          {cardData.map((item, index) => (
+            <Card content={item} key={index} />
+          ))}
+        </Masonry>
       </Box>
     </Box>
   );

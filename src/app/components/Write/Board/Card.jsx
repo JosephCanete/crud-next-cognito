@@ -6,21 +6,20 @@ export default function Card({ content }) {
     <Paper
       variant="outlined"
       sx={{
-        flex: "1 1 auto",
-        width: "250px",
+        // display: "flex",
+        // alignItems: "start",
+        // width: "250px",
         background: "transparent",
-        borderRadius: "1rem",
+        borderRadius: "8px",
+        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
         p: 1,
-        m: 1,
+        height: "fit-content",
+        display: "flex",
+        alignContent: "center",
+        justifyContent: "center",
       }}
     >
-      <div style={{ height: "auto", overflow: "hidden" }}>
-        {content}
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet dolore
-        commodi consequuntur odit atque? Reprehenderit, eos quo est impedit
-        architecto, mollitia aliquid, atque sit odio blanditiis harum minima
-        magni! Molestias?
-      </div>
+      <Box>{content}</Box>
     </Paper>
   );
 }
