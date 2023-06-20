@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Masonry from "@mui/lab/Masonry";
 import Card from "./Card";
-import TextArea from "./TextArea/TextArea";
+import TextArea from "./TextArea";
 
 const cardData = [
   "Lorem ip",

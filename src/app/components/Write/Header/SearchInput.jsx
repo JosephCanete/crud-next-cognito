@@ -1,4 +1,4 @@
-import { useTheme, TextField, InputAdornment, IconButton } from "@mui/material";
+import { TextField, InputAdornment, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
 
@@ -8,11 +8,11 @@ export default function SearchInput({
   handleSearch,
   handleClear,
 }) {
-  const theme = useTheme();
-
   return (
     <TextField
       sx={{
+        ml: 5,
+        marginRight: "auto",
         maxWidth: 720,
         backgroundColor: "transparent",
       }}

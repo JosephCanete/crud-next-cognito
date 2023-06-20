@@ -81,7 +81,6 @@ export default function FormPane({
                     border: "none",
                   },
                 }}
-                disableElevation
                 onClick={() => router.push("/register")}
               >
                 Sign Up Here

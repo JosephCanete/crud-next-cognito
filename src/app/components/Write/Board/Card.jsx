@@ -1,17 +1,25 @@
-import React from "react";
-import { Paper, Box } from "@mui/material";
+import React, { useState } from "react";
+import { Paper, Box, IconButton } from "@mui/material";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-export default function Card({ content }) {
+export default function Card({ content, keycardId }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const [selected, setSelected] = useState([]);
+
+  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseLeave = () => setIsHovered(false);
+  const handleSelectedCards = () => {};
+
   return (
     <Paper
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       variant="outlined"
       sx={{
-        // display: "flex",
-        // alignItems: "start",
-        // width: "250px",
+        border: isHovered && "2px solid white",
+        position: isHovered && "relative",
         background: "transparent",
         borderRadius: "8px",
-        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
         p: 1,
         height: "fit-content",
         display: "flex",
@@ -19,6 +27,14 @@ export default function Card({ content }) {
         justifyContent: "center",
       }}
     >
+      {isHovered && (
+        <IconButton
+          sx={{ position: "absolute", top: -25, left: -20 }}
+          onClick={handleSelectedCards}
+        >
+          <CheckCircleIcon />
+        </IconButton>
+      )}
       <Box>{content}</Box>
     </Paper>
   );

@@ -1,11 +1,10 @@
 import React from "react";
 import { Button, Box, useTheme } from "@mui/material";
-import LightbulbIcon from "@mui/icons-material/Lightbulb";
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import ArchiveIcon from "@mui/icons-material/Archive";
-
+import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
+import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 export default function GeneralActions({ label, selected }) {
   const theme = useTheme();
 
@@ -39,13 +38,15 @@ export default function GeneralActions({ label, selected }) {
         width: 300,
       }}
     >
-      <GeneralButton startIcon={<LightbulbIcon />}>Notes</GeneralButton>
-      <GeneralButton startIcon={<NotificationsActiveIcon />}>
+      <GeneralButton startIcon={<LightbulbOutlinedIcon />}>Notes</GeneralButton>
+      <GeneralButton startIcon={<NotificationsNoneOutlinedIcon />}>
         Reminder
       </GeneralButton>
-      <GeneralButton startIcon={<EditIcon />}>Edit Labels</GeneralButton>
-      <GeneralButton startIcon={<ArchiveIcon />}>Archive</GeneralButton>
-      <GeneralButton startIcon={<DeleteIcon />}>Trash</GeneralButton>
+      <GeneralButton startIcon={<EditOutlinedIcon />}>
+        Edit Labels
+      </GeneralButton>
+      <GeneralButton startIcon={<ArchiveOutlinedIcon />}>Archive</GeneralButton>
+      <GeneralButton startIcon={<DeleteOutlinedIcon />}>Trash</GeneralButton>
     </Box>
   );
 }
